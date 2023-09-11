@@ -1,0 +1,22 @@
+@import "./colors.scss";
+
+.shop-button {
+    max-width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.burger-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.shop-button-title {
+    font-family: 'Playfair Display', serif;
+    color: $green;
+    font-weight: 600;
+    margin: 0;
+}

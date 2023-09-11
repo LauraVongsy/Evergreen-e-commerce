@@ -1,0 +1,31 @@
+@import "./colors.scss";
+
+.banner {
+    background-color: $sauge;
+    width: 100%;
+    height: auto;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-text-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-text {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    color: white;
+}
+
+.banner-icon {
+    color: white;
+    height: 25px;
+    width: 25px;
+    margin: 0px 15px;
+}
