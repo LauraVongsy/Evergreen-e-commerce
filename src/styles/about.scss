@@ -1,0 +1,99 @@
+@import "./colors.scss";
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.about-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-title {
+  color: $green;
+  margin: 50px 0px;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+}
+.about-img {
+  width: 50%;
+  height: auto;
+}
+.about-text-container {
+  background-color: $green;
+  width: 50%;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title-text {
+  color: white;
+  font-family: "Playfair Display", serif;
+  font-size: x-large;
+  font-style: italic;
+}
+.about-text {
+  color: white;
+  font-family: "Playfair Display", serif;
+  font-size: larger;
+  font-style: italic;
+}
+
+/* Réglez la largeur de la ligne de séparation sur 15% de la largeur de l'écran */
+.separator {
+  width: 15%;
+  /* Centrez horizontalement la ligne de séparation en utilisant margin auto */
+  margin: 50px auto;
+  /* Vous pouvez également ajouter d'autres styles, comme la couleur et l'épaisseur de la ligne */
+  border: 1px solid $green; /* Exemple de bordure de 1 pixel solide noire */
+}
+@media (max-width: 1250px) {
+  .title-text {
+    color: white;
+    font-family: "Playfair Display", serif;
+    font-size: large;
+    font-style: italic;
+  }
+  .about-text {
+    color: white;
+    font-family: "Playfair Display", serif;
+    font-size: medium;
+    font-style: italic;
+  }
+}
+
+@media (max-width: 900px) {
+  .about-img {
+    display: none;
+  }
+  .about-text-container {
+    background-color: $rose;
+    width: 80%;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .title-text {
+    color: $green;
+    font-family: "Playfair Display", serif;
+    font-size: large;
+    font-style: italic;
+  }
+  .about-text {
+    color: $green;
+    font-family: "Playfair Display", serif;
+    font-size: medium;
+    font-style: italic;
+  }
+}

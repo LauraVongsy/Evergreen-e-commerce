@@ -1,0 +1,43 @@
+@import "./colors.scss";
+
+.footer {
+  margin-top: 80px;
+  width: 100%;
+  height: auto;
+  background-color: $rose;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+}
+
+.footer-contacts p {
+  margin: 5px;
+  font-family: "Playfair Display", serif;
+  color: $green;
+}
+
+.socials p {
+  font-family: "Playfair Display", serif;
+  color: $green;
+}
+.socials-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.media-icons {
+  margin: 5px;
+}
+
+.cgu a {
+  margin: 5px;
+  text-decoration: none;
+  color: $green;
+  &:active {
+    text-decoration: none;
+    color: $green;
+  }
+}

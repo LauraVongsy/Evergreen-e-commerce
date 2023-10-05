@@ -1,0 +1,29 @@
+@import "./colors.scss";
+
+.insta-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.insta-title {
+  color: $green;
+  font-family: "Playfair Display", serif;
+}
+.insta-grid {
+  margin: 50px 0px;
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-items: center;
+}
+
+.insta-img {
+  width: 100%;
+  height: auto;
+}
