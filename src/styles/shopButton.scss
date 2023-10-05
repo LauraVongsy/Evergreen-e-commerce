@@ -1,7 +1,6 @@
 @import "./colors.scss";
 
 .shop-button {
-    max-width: 30%;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -17,6 +16,12 @@
 .shop-button-title {
     font-family: 'Playfair Display', serif;
     color: $green;
-    font-weight: 600;
+    font-weight: 500;
     margin: 0;
+}
+
+@media (max-width:1200px) {
+    .shop-button-title {
+        display: none;
+    }
 }

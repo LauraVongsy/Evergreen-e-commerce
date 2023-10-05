@@ -2,5 +2,9 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
 }

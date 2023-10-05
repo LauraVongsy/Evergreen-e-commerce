@@ -6,7 +6,7 @@ export default function Navbar() {
         <div className='navbar-container'>
             <p className='navbar-blog'>Le Blog</p>
             <img className="navbar-icon" src="/assets/icons/User.png" alt="user icon" />
-            <button className='subscribe-button'>M'inscrire</button>
+            <img className="navbar-icon" src="/assets/icons/Search.png" alt="search icon" />
             <img className="navbar-icon" src="/assets/icons/Cart.png" alt="cart icon" />
         </div>
     )
