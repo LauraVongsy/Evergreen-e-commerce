@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import SwiperCore, { Navigation, Pagination } from "swiper/core";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/swiper-bundle.min.css";
 import Rates from "./Rates";
 
 import "../styles/bestsellers.scss";
 
+// SwiperCore.use([Pagination]);
+
 export default function BestSellers() {
+  const [isMobile, setIsMobile] = useState(false);
+
   return (
     <div className="bestsellers-container">
       <div className="bestsellers-header">
@@ -101,6 +108,8 @@ export default function BestSellers() {
       </div>
 
       <button className="see-more-btn">Voir plus</button>
+
+      <hr className="separator" />
     </div>
   );
 }

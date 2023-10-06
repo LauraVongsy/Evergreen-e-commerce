@@ -6,8 +6,12 @@ export default function Footer() {
     <div className="footer">
       <div className="footer-contacts">
         <p>Nous contacter</p>
-        <p>Service client: 0800 306 30 9</p>
-        <p>Par mail: contact@evergreen.com</p>
+        <p>
+          Service client: <br /> 0800 306 30 9
+        </p>
+        <p>
+          Par mail: <br /> contact@evergreen.com
+        </p>
       </div>
       <div className="socials">
         <p>Nous trouver sur les réseaux sociaux:</p>
