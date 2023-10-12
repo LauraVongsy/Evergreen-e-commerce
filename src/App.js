@@ -1,24 +1,26 @@
 import "./App.css";
-import Banner from "./components/Banner";
-import Header from "./components/Header";
-import Cover from "./components/Cover";
-import BestSellers from "./components/BestSellers";
-import Carousel from "./components/Carousel";
-import About from "./components/About";
-import Instagram from "./components/Instagram";
-import Footer from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
+import "./pages/HomePage";
+import HomePage from "./pages/HomePage";
+import SignUpPage from "./pages/SignUpPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import SmallPlants from "./pages/SmallPlants";
+import MediumPlants from "./pages/MediumPlants";
+import LargePlants from "./pages/LargePlants";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
-      <Banner />
-      <Header />
-      <Cover />
-      <BestSellers />
-      <Carousel />
-      <About />
-      <Instagram />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/categories/1" element={<SmallPlants />} />
+        <Route path="/categories/2" element={<MediumPlants />} />
+        <Route path="/categories/3" element={<LargePlants />} />
+      </Routes>
     </div>
   );
 }
