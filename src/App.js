@@ -7,6 +7,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import SmallPlants from "./pages/SmallPlants";
 import MediumPlants from "./pages/MediumPlants";
 import LargePlants from "./pages/LargePlants";
+import CartPage from "./pages/CartPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/categories/1" element={<SmallPlants />} />
         <Route path="/categories/2" element={<MediumPlants />} />
         <Route path="/categories/3" element={<LargePlants />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </div>
   );

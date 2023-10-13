@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/signupPage.scss";
 
 export default function SignUpPage() {
   return (
     <>
       <div className="sign-up-page">
-        <img className="logo" src="/assets/logos/desktop-logo.png" alt="logo" />
+        <Link className="logo" to="/"><img src="/assets/logos/desktop-logo.png" alt="logo" /></Link>
+
         <section className="sign-up-form">
           <div className="form-container">
             <h1 className="form-title">Créez votre compte</h1>

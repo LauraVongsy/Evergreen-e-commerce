@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 export default function CartOverlay({ closeCart }) {
     return (
@@ -12,8 +14,8 @@ export default function CartOverlay({ closeCart }) {
                 </div>
             </div>
             <div className="total">Total:</div>
+            <Link to="/cart"><button className="validate-btn">Voir mon panier</button></Link>
 
-            <button className="validate-btn">Valider le panier</button>
             <button
                 className="closing-btn"
                 onClick={closeCart}

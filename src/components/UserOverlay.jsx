@@ -1,5 +1,6 @@
 import React from 'react'
-import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
+
 
 export default function UserOverlay({ closeModal }) {
     return (
@@ -28,6 +29,8 @@ export default function UserOverlay({ closeModal }) {
                 />{" "}
                 Se connecter avec Instagram
             </button>
+            <Link className='register' to="/signup">M'inscrire</Link>
+
             <button
                 className="closing-btn"
                 onClick={closeModal}

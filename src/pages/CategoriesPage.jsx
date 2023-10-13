@@ -12,8 +12,8 @@ export default function CategoriesPage() {
       <Header />
       <div>
         <h1>Notre séléction de plantes d’intérieur:</h1>
-        <div className="grid-container">
-          <div className="grid">
+        <div className="categories-grid-container">
+          <div className="categories-grid">
             <div className="category-card">
               <img
                 className="card-img"

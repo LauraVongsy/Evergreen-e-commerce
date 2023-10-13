@@ -80,7 +80,7 @@ input:focus {
 
 .validate-btn {
   border: none;
-  width: 50%;
+  width: 90%;
   height: auto;
   padding: 5px;
   background-color: $green;
@@ -107,15 +107,20 @@ input:focus {
   width: 30px;
 }
 
+.register {
+  margin: 20px 0;
+  color: white;
+}
+
 .closing-btn {
 
   margin-top: 20px;
-  color: black;
+  color: white;
   width: 25px;
   height: 25px;
   background-color: transparent;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid white;
   cursor: pointer;
 }
 
