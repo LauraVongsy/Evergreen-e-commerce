@@ -1,0 +1,94 @@
+@import "colors.scss";
+.sign-up-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100vh;
+}
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.form-container,
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-container {
+  margin-top: 150px;
+}
+
+.form-subtitle {
+  margin: 20px 0;
+}
+.form-title,
+.form-subtitle,
+.form-label,
+.form-input {
+  font-family: "Playfair Display", serif;
+  color: $green;
+}
+.form-input {
+  border: none;
+  border-bottom: 1px solid $green;
+  outline: none;
+}
+.form {
+  width: 50%;
+  margin: 50px 0;
+}
+.form-input {
+  width: 90%;
+  margin-bottom: 15px;
+}
+.sign-up-btn {
+  background-color: $green;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.google-signup,
+.insta-signup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+  color: $green;
+  border: 1px solid $green;
+  border-radius: 5px;
+  padding: 7px;
+  margin: 10px 0;
+  cursor: pointer;
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+.sign-up-img {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 98%;
+  }
+}
