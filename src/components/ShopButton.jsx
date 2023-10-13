@@ -1,11 +1,19 @@
 import React from 'react'
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../styles/shopButton.scss'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function ShopButton() {
     return (
-        <div className='shop-button'>
-            <img className='burger-icon' src="/assets/icons/Burger.png" alt="burger icon" />
-            <p className='shop-button-title'>SHOP</p>
-        </div>
-    )
+        <DropdownButton id="dropdown-item-button" title="SHOP">
+            <Dropdown.Item as="button">Petites plantes</Dropdown.Item>
+            <Dropdown.Item as="button">Plantes moyennes</Dropdown.Item>
+            <Dropdown.Item as="button">Grandes plantes</Dropdown.Item>
+            <Dropdown.Item as="button">Accessoires</Dropdown.Item>
+        </DropdownButton>
+    );
+
 }
+

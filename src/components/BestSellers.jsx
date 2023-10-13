@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import SwiperCore, { Navigation, Pagination } from "swiper/core";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import SwiperCore, { Navigation, Pagination } from "swiper/core";
+// import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/swiper-bundle.min.css";
 import Rates from "./Rates";
 

@@ -1,63 +1,79 @@
 import React, { useState } from "react";
+import UserOverlay from "./UserOverlay";
+import CartOverlay from "./CartOverlay";
+
+
 import "../styles/navbar.scss";
 
 export default function Navbar() {
-  const [userModal, setUserModal] = useState(false);
-  const [cartModal, setCartModal] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [showSearchbar, setShowsearchbar] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const handleOpenSearchbar = () => {
+    setShowsearchbar(true);
+  };
+
+  const handleCloseSearchbar = () => {
+    setShowsearchbar(false);
+  };
+  const handleOpenCart = () => {
+    setShowCart(true);
+  };
+
+  const handleCloseCart = () => {
+    setShowCart(false);
+  };
 
   return (
     <div className="navbar-container">
-      <p className="navbar-blog">Le Blog</p>
-      <img
-        onClick={() => setUserModal(true)}
-        className="navbar-icon"
-        src="/assets/icons/User.png"
-        alt="user icon"
-      />
-      {userModal ? (
-        <div className="overlayUser">
-          <p>Connectez vous:</p>
-          <label htmlFor="">Email:</label>
-          <input type="email" />
-          <label htmlFor="">Mot de passe:</label>
-          <input type="password" />
-          <button className="validate-btn">Valider</button>
-          <button className="social-btn">
-            {" "}
-            <img
-              className="social-icons"
-              src="/assets/socials/google.png"
-              alt=""
-            />{" "}
-            Se connecter avec Google
-          </button>
-          <button className="social-btn">
-            {" "}
-            <img
-              className="social-icons"
-              src="/assets/socials/instagram.png"
-              alt=""
-            />{" "}
-            Se connecter avec Instagram
-          </button>
-          <button className="closing-btn" onClick={() => setUserModal(false)}>
-            X
-          </button>
-        </div>
-      ) : (
-        ""
-      )}
+      <span className="navbar-blog">Le Blog</span>
+      <div className="user-icon-container">
+        <img
+          className="navbar-icon"
+          src="/assets/icons/User.png"
+          alt="user icon"
+          onClick={handleOpenModal}
+        />
+        {showModal && (
+          <UserOverlay closeModal={handleCloseModal} />
+        )}
+      </div>
       <img
         className="navbar-icon"
         src="/assets/icons/Search.png"
         alt="search icon"
+        onClick={handleOpenSearchbar}
       />
+      {showSearchbar && (
+        <div className="searchbar-container">
+          <input className="search-input" type="text" placeholder="Rechercher..." />
+          <button
+            className="searchbar-closing-btn"
+            onClick={handleCloseSearchbar}
+          >
+            X
+          </button>
+        </div>
+
+      )}
       <img
-        onClick={() => setCartModal(true)}
         className="navbar-icon"
         src="/assets/icons/Cart.png"
         alt="cart icon"
+        onClick={handleOpenCart}
       />
+      {showCart && (
+        <CartOverlay closeCart={handleCloseCart} />
+      )}
     </div>
   );
 }

@@ -13,7 +13,9 @@
     width: 30px;
 }
 
-.shop-button-title {
+#dropdown-item-button {
+    background-color: transparent;
+    border: none;
     font-family: 'Playfair Display', serif;
     color: $green;
     font-weight: 500;
