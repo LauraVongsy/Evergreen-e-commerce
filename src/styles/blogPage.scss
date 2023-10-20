@@ -18,7 +18,7 @@
 .blog-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .blog-summary {
@@ -31,7 +31,6 @@
     border-radius: 25px 0 25px 0;
     font-family: 'Playfair Display', serif;
     max-width: 10%;
-    margin: 0 80px;
     padding: 20px;
 }
 
@@ -41,7 +40,7 @@
     max-width: 60%;
 
     .blog-text {
-        max-width: 60%;
+        max-width: 70%;
     }
 
     .blog-art-title,
@@ -53,7 +52,9 @@
 }
 
 .blog-art-img {
-    width: 20%;
+    width: 30%;
+    height: auto;
+    object-fit: contain;
 }
 
 .blog-art-title {
