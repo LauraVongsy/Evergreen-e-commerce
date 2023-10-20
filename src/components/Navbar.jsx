@@ -1,51 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import UserOverlay from "./UserOverlay";
 import CartOverlay from "./CartOverlay";
-
-
+import { Link } from "react-router-dom";
 import "../styles/navbar.scss";
+import { Overlay } from "react-bootstrap";
 
 export default function Navbar() {
-
   const [showModal, setShowModal] = useState(false);
-  const [showSearchbar, setShowsearchbar] = useState(false);
+  const [showSearchbar, setShowSearchbar] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const userOverlayRef = useRef();
+  const cartOverlayRef = useRef();
 
   const handleOpenModal = () => {
     setShowModal(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+
   const handleOpenSearchbar = () => {
-    setShowsearchbar(true);
+    setShowSearchbar(true);
   };
 
   const handleCloseSearchbar = () => {
-    setShowsearchbar(false);
+    setShowSearchbar(false);
   };
+
   const handleOpenCart = () => {
     setShowCart(true);
   };
 
-  const handleCloseCart = () => {
-    setShowCart(false);
-  };
+
+  useEffect(() => {
+    // userOverlayRef.current et cartOverlayRef.current veulent dire qu'on est dans l'Overlay
+    // et de ce fait si on est dans l'overlay setShowModal reste true.
+
+    const handleOutsideClick = (event) => {
+      if (userOverlayRef.current && !userOverlayRef.current.contains(event.target)) {
+        setShowModal(false);
+      }
+      if (cartOverlayRef.current && !cartOverlayRef.current.contains(event.target)) {
+        setShowCart(false);
+      }
+    };
+
+    //  document.addEventListener pour écouter les clics à l'échelle de la page.
+    //  Chaque fois qu'un clic se produit, la fonction handleOutsideClick est appelée.
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   return (
     <div className="navbar-container">
-      <span className="navbar-blog">Le Blog</span>
-      <div className="user-icon-container">
+      <Link className="navbar-blog" to="/blog">
+        <span>Le Blog</span>
+      </Link>
+
+      {/* ref fait référence à un élément du DOM du composant
+      ref={userOverlayRef} est ajouté à la <div> contenant l'overlay de l'utilisateur
+       et ref={cartOverlayRef} est ajouté à la <div> contenant l'overlay du panier. */}
+
+      <div className="user-icon-container" ref={userOverlayRef}>
         <img
           className="navbar-icon"
           src="/assets/icons/User.png"
           alt="user icon"
           onClick={handleOpenModal}
         />
-        {showModal && (
-          <UserOverlay closeModal={handleCloseModal} />
-        )}
+        {showModal && <UserOverlay />}
       </div>
       <img
         className="navbar-icon"
@@ -56,24 +81,20 @@ export default function Navbar() {
       {showSearchbar && (
         <div className="searchbar-container">
           <input className="search-input" type="text" placeholder="Rechercher..." />
-          <button
-            className="searchbar-closing-btn"
-            onClick={handleCloseSearchbar}
-          >
+          <button className="searchbar-closing-btn" onClick={handleCloseSearchbar}>
             X
           </button>
         </div>
-
       )}
-      <img
-        className="navbar-icon"
-        src="/assets/icons/Cart.png"
-        alt="cart icon"
-        onClick={handleOpenCart}
-      />
-      {showCart && (
-        <CartOverlay closeCart={handleCloseCart} />
-      )}
+      <div className="cart-icon-container" ref={cartOverlayRef}>
+        <img
+          className="navbar-icon"
+          src="/assets/icons/Cart.png"
+          alt="cart icon"
+          onClick={handleOpenCart}
+        />
+        {showCart && <CartOverlay />}
+      </div>
     </div>
   );
 }

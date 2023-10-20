@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-export default function CartOverlay({ closeCart }) {
+export default function CartOverlay() {
     return (
         <div className="overlayCart">
             <p>Votre panier:</p>
@@ -15,13 +15,6 @@ export default function CartOverlay({ closeCart }) {
             </div>
             <div className="total">Total:</div>
             <Link to="/cart"><button className="validate-btn">Voir mon panier</button></Link>
-
-            <button
-                className="closing-btn"
-                onClick={closeCart}
-            >
-                X
-            </button>
         </div>
     )
 }

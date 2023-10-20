@@ -22,6 +22,17 @@
     margin: 0;
 }
 
+.category-links {
+    font-family: 'Playfair Display', serif;
+    color: $green;
+    text-decoration: none;
+
+    &:visited {
+        text-decoration: none;
+        color: $green;
+    }
+}
+
 @media (max-width:1200px) {
     .shop-button-title {
         display: none;

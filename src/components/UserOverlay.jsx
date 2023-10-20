@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 
-export default function UserOverlay({ closeModal }) {
+export default function UserOverlay() {
     return (
         <div className="overlayUser">
             <p>Connectez-vous :</p>
@@ -30,13 +30,6 @@ export default function UserOverlay({ closeModal }) {
                 Se connecter avec Instagram
             </button>
             <Link className='register' to="/signup">M'inscrire</Link>
-
-            <button
-                className="closing-btn"
-                onClick={closeModal}
-            >
-                X
-            </button>
         </div>
     )
 }

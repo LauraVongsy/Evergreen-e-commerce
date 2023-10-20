@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/smallplants.scss";
 
-export default function MediumPlants() {
+export default function Orchids() {
   return (
     <div>
       <Banner />

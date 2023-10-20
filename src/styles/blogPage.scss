@@ -1,0 +1,66 @@
+@import "./colors.scss";
+
+.blog-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.le-blog {
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    color: $green;
+    margin-bottom: 50px;
+}
+
+.blog-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.blog-summary {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    color: $green;
+    background-color: #e1e6df;
+    border: 1px solid $green;
+    border-radius: 25px 0 25px 0;
+    font-family: 'Playfair Display', serif;
+    max-width: 10%;
+    margin: 0 80px;
+    padding: 20px;
+}
+
+.blog-article {
+    height: auto;
+    display: flex;
+    max-width: 60%;
+
+    .blog-text {
+        max-width: 60%;
+    }
+
+    .blog-art-title,
+    .article-paragraph {
+        color: $green;
+        font-family: 'Playfair Display', serif;
+
+    }
+}
+
+.blog-art-img {
+    width: 20%;
+}
+
+.blog-art-title {
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+.article-paragraph {
+    margin: 0 30px;
+}
