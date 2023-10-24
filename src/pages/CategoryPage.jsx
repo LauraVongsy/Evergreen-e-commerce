@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -61,14 +62,14 @@ export default function SmallPlants() {
         <div className="grid-container">
           <div className="grid">
             {category.map((product, index) => {
-              return (<div className="category-card" key={index}>
+              return (<Link to={`/products/${product.id_product}`} className="category-card" key={index}>
                 <img
                   className="card-img"
                   src={product.product_image}
                   alt=""
                 />
                 <p className="card-title">{product.product_name}</p>
-              </div>)
+              </Link>)
             })
             }
           </div>

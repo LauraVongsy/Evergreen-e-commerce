@@ -1,115 +1,74 @@
 import React, { useEffect, useState } from "react";
-// import SwiperCore, { Navigation, Pagination } from "swiper/core";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/swiper-bundle.min.css";
 import Rates from "./Rates";
-
+import { Link } from "react-router-dom";
 import "../styles/bestsellers.scss";
 
-// SwiperCore.use([Pagination]);
-
 export default function BestSellers() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [bestsellers, setBestsellers] = useState([]);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/bestsellers`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        });
+
+        console.log(response);
+        const data = await response.json();
+        console.log(data);
+        setBestsellers(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Une erreur est survenue :", error);
+      }
+    };
+
+    fetchResults();
+  }, []);
 
   return (
-    <div className="bestsellers-container">
-      <div className="bestsellers-header">
-        <h1 className="bestsellers-title">Nos meilleures ventes</h1>
-        <span className="bestsellers-subtitle">
-          Découvrez les favoris de nos clients et craquez à votre tour...
-        </span>
-      </div>
-      <div className="bestsellers-cards-container">
-        <div className="bestsellers-card">
-          <img
-            className="bestsellers-img"
-            src="/assets/bestsellers-img/monstera.png"
-            alt=""
-          />
-          <div className="bestsellers-card-desc">
-            <h2 className="card-title">titre article</h2>
-            <p className="card-desc">
-              Dans cet exemple, le texte ne reviendra pas à la ligne, sera
-              masqué s'il dépasse la largeur spécifiée (200 pixels dans cet
-              exemple), et affichera "..." s'il est tronqué.
-            </p>
-          </div>
-          <div className="rates-and-price">
-            <Rates />
-            <span className="bestsellers-price">25€</span>
-          </div>
-          <div className="div-btn">
-            <button className="card-button">Ajouter au panier</button>
-          </div>{" "}
+    !isLoading ? (
+      <div className="bestsellers-container">
+        <div className="bestsellers-header">
+          <h1 className="bestsellers-title">Nos meilleures ventes</h1>
+          <span className="bestsellers-subtitle">
+            Découvrez les favoris de nos clients et craquez à votre tour...
+          </span>
         </div>
-        <div className="bestsellers-card">
-          <img
-            className="bestsellers-img"
-            src="/assets/bestsellers-img/ficus-elastica-white.png"
-            alt=""
-          />
-          <div className="bestsellers-card-desc">
-            <h2 className="card-title">titre article</h2>
-            <p className="card-desc">
-              description,
-              blablablablaalallblablalalblablablalabalbalblalababalbalba
-            </p>
-          </div>
-          <div className="rates-and-price">
-            <Rates className="rates" />
-            <span className="bestsellers-price">25€</span>
-          </div>
-          <div className="div-btn">
-            <button className="card-button">Ajouter au panier</button>
-          </div>{" "}
-        </div>
-        <div className="bestsellers-card">
-          <img
-            className="bestsellers-img"
-            src="/assets/bestsellers-img/pilea.png"
-            alt=""
-          />
-          <div className="bestsellers-card-desc">
-            <h2 className="card-title">titre article</h2>
-            <p className="card-desc">
-              description,
-              blablablablaalallblablalalblablablalabalbalblalababalbalba
-            </p>
-          </div>
-          <div className="rates-and-price">
-            <Rates />
-            <span className="bestsellers-price">25€</span>
-          </div>
-          <div className="div-btn">
-            <button className="card-button">Ajouter au panier</button>
-          </div>{" "}
-        </div>
-        <div className="bestsellers-card">
-          <img
-            className="bestsellers-img"
-            src="/assets/bestsellers-img/suspension.png"
-            alt=""
-          />
-          <div className="bestsellers-card-desc">
-            <h2 className="card-title">titre article</h2>
-            <p className="card-desc">
-              description,
-              blablablablaalallblablalalblablablalabalbalblalababalbalba
-            </p>
-          </div>
-          <div className="rates-and-price">
-            <Rates />
-            <span className="bestsellers-price">25€</span>
-          </div>
-          <div className="div-btn">
-            <button className="card-button">Ajouter au panier</button>
-          </div>
-        </div>
-      </div>
+        <div className="bestsellers-cards-container">
+          {bestsellers ? bestsellers.map((bestseller, index) => (
+            <Link to={`/products/${bestseller.product.id_product}`} className="bestsellers-card" key={index}>
+              <img
+                className="bestsellers-img"
+                src={bestseller.product.product_image}
+                alt=""
+              />
+              <div className="bestsellers-card-desc">
+                <h2 className="card-title">{bestseller.product.product_name}</h2>
+                <p className="card-desc">
+                  {bestseller.product.product_short_desc}
+                </p>
+              </div>
+              <div className="rates-and-price">
+                <Rates />
+                <p>Prix:</p>
+                <span className="bestsellers-price">{bestseller.product.product_price}€</span>
+              </div>
+              <div className="div-btn">
+                <button className="card-button">Ajouter au panier</button>
+              </div>
+            </Link>
+          )) : "loading"}
 
-      <button className="see-more-btn">Voir plus</button>
-
-      <hr className="separator" />
-    </div>
+        </div>
+        <hr className="separator" />
+      </div>
+    ) : (
+      "loading"
+    )
   );
 }
