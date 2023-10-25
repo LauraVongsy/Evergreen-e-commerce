@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 20 oct. 2023 à 09:32
+-- Généré le : mer. 25 oct. 2023 à 18:09
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -29,17 +29,17 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `bestsellers`;
 CREATE TABLE IF NOT EXISTS `bestsellers` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `product_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`)
+  `bestseller_id` int NOT NULL,
+  `id_product` int DEFAULT NULL,
+  PRIMARY KEY (`bestseller_id`),
+  KEY `product_id` (`id_product`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `bestsellers`
 --
 
-INSERT INTO `bestsellers` (`id`, `product_id`) VALUES
+INSERT INTO `bestsellers` (`bestseller_id`, `id_product`) VALUES
 (1, 14),
 (2, 12),
 (3, 7),
@@ -221,13 +221,13 @@ INSERT INTO `products` (`id_product`, `product_name`, `product_image`, `product_
 (6, 'Pepperomia raindrop', '/assets/small-plants/small-pepperomia-raindrop.png', 'Feuilles en forme de goutte de pluie', 'La Peperomia Raindrop, comme son nom l\'indique, a des feuilles en forme de goutte de pluie, ce qui lui donne un charme unique. Elle est une petite plante d\'intérieur qui ajoute une touche de verdure à n\'importe quel espace. Elle nécessite une lumière indirecte et un arrosage modéré.', '9.99', 100, 1, 3, 2, 'Niveau 1', 1),
 (7, 'Pilea', '/assets/small-plants/small-pilea.png', 'Plante à feuilles rondes', 'La Pilea, également connue sous le nom de plante à feuilles rondes, est une plante d\'intérieur appréciée pour ses feuilles vertes rondes et plates. Elle est facile à entretenir et se multiplie rapidement, ce qui en fait un excellent choix pour les amateurs de plantes', '9.99', 100, 2, 2, 2, 'Niveau 1', 1),
 (8, 'Pothos argenté', '/assets/small-plants/small-pothos-silver.png', 'Feuilles panachées argentées', 'Le Pothos Argenté est une variante du pothos avec des feuilles panachées d\'argent et de vert. Cette plante grimpante est parfaite pour les paniers suspendus ou pour grimper le long de supports. Elle tolère des conditions d\'éclairage variables et est idéale pour les espaces peu éclairés.', '9.99', 100, 2, 2, 2, 'Niveau 1', 1),
-(9, 'Alocasia', '/assets/large-plants/large-alocasio.png', 'Feuilles décoratives', 'L\'Alocasia est une plante d\'intérieur attrayante avec des feuilles décoratives. Elle apporte une touche de verdure élégante à votre espace. Elle préfère un éclairage indirect brillant et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
+(9, 'Alocasia', '/assets/large-plants/large-alocasia.png', 'Feuilles décoratives', 'L\'Alocasia est une plante d\'intérieur attrayante avec des feuilles décoratives. Elle apporte une touche de verdure élégante à votre espace. Elle préfère un éclairage indirect brillant et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (10, 'Ficus Benjamina', '/assets/large-plants/large-ficus-benjamina.png', 'Feuilles vertes élégantes', 'Le Ficus Benjamina est une plante d\'intérieur populaire connue pour ses feuilles vertes élégantes et sa facilité d\'entretien. Il s\'adapte bien à une variété de conditions d\'éclairage et peut être un ajout charmant à votre espace.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (11, 'Ficus Elastica', '/assets/large-plants/large-ficus-elastica.png', 'Feuilles vertes luisantes', 'Le Ficus Elastica, également appelé caoutchouc, est une plante d\'intérieur populaire appréciée pour ses feuilles vertes luisantes et sa facilité d\'entretien. Il tolère une gamme de conditions d\'éclairage et est idéal pour ceux qui veulent un ajout verdoyant à leur espace.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (12, 'Ficus Elastica Blanc', '/assets/large-plants/large-ficus-elastica-white.png', 'Feuilles blanches et vertes', 'Le Ficus Elastica Blanc est une variante du Ficus Elastica avec des feuilles blanches et vertes. Cette plante d\'intérieur ajoute une touche de raffinement à votre décor. Elle préfère un éclairage indirect lumineux et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (13, 'Ficus Lyrata', '/assets/large-plants/large-ficus-lyrata.png', 'Feuilles en forme de violon', 'Le Ficus Lyrata, également appelé figuier lyre, se caractérise par ses feuilles en forme de violon. C\'est une plante d\'intérieur majestueuse qui ajoute une touche d\'élégance à votre espace. Elle nécessite un éclairage indirect lumineux et des arrosages réguliers.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (14, 'Monstera Deliciosa', '/assets/large-plants/large-monstera-deliciosa.png', 'Feuilles percées', 'La Monstera Deliciosa, surnommée la plante des trous suisses, est appréciée pour ses feuilles percées uniques. Elle ajoute un caractère distinctif à votre intérieur. Elle préfère un éclairage indirect lumineux et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
-(15, 'Monstera Deliciosa XXL', '/assets/large-plants/large-monstera-deliciosa-xxl.png', 'Feuilles géantes percées', 'La Monstera Deliciosa XXL est une variante de la Monstera avec des feuilles géantes percées. Cette plante d\'intérieur impressionnante est un véritable accroche-regard. Elle préfère un éclairage indirect lumineux et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
+(15, 'Monstera Deliciosa XXL', '/assets/large-plants/large-monstera-xxl.png', 'Feuilles géantes percées', 'La Monstera Deliciosa XXL est une variante de la Monstera avec des feuilles géantes percées. Cette plante d\'intérieur impressionnante est un véritable accroche-regard. Elle préfère un éclairage indirect lumineux et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (16, 'Schefflera', '/assets/large-plants/large-schefflera.png', 'Feuilles en ombrelle', 'Le Schefflera, aussi connu sous le nom d\'arbre parapluie, a des feuilles en forme d\'ombrelle. Il est idéal pour ajouter une touche tropicale à votre intérieur. Il préfère un éclairage indirect lumineux et des arrosages modérés.', '19.99', 100, 2, 2, 2, 'Niveau 1', 3),
 (17, 'Aeonium', '/assets/succulentes-cactus/aeonium.png', 'Feuilles charnues', 'L\'Aeonium est une plante succulente avec des feuilles charnues et une apparence distincte. Elle apporte une touche unique à votre espace. Elle préfère un éclairage lumineux et des arrosages modérés.', '5.99', 100, 2, 2, 2, 'Niveau 1', 2),
 (18, 'Crassula Ovata Hobbit', '/assets/succulentes-cactus/crassula-ovata-hobbit.png', 'Feuilles en forme de tubules', 'Le Crassula Ovata Hobbit est une plante succulente avec des feuilles en forme de tubules. Elle est parfaite pour les amateurs de plantes inhabituelles. Elle préfère un éclairage lumineux et des arrosages modérés.', '5.99', 100, 2, 2, 2, 'Niveau 1', 2),

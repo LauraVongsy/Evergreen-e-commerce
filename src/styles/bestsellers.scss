@@ -16,14 +16,15 @@
 }
 
 .bestsellers-title {
-  margin: 20px;
+  margin: 0 0 50px 80px;
   font-family: "Playfair Display", serif;
   color: $green;
+  font-size: xx-large;
 }
 
 .bestsellers-subtitle {
   font-family: "Playfair Display", serif;
-  font-size: large;
+  font-size: x-large;
   color: $green;
 }
 
@@ -37,6 +38,7 @@
 }
 
 .bestsellers-card {
+  text-decoration: none;
   width: 20%;
   height: auto;
   display: flex;
@@ -46,6 +48,8 @@
   margin: 10px;
   box-shadow: 2px 2px 2px gray;
   cursor: pointer;
+  color: $green;
+  font-family: 'Playfair Display', serif;
 
   &:hover {
     transform: scale(1.02);
