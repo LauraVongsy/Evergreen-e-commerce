@@ -12,8 +12,11 @@ export default function ProductPage() {
     const [isLoading, setIsLoading] = useState(true);
 
     const { id } = useParams();
-    console.log(id);
+
     const [product, setProduct] = useState([]);
+
+    const { cart, increaseQuantity, decreaseQuantity, addToCart } = useContext(CartContext);
+
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -37,13 +40,9 @@ export default function ProductPage() {
 
         fetchResults();
     }, [id]);
+    console.log(cart);
 
-    const cartContext = useContext(CartContext);
 
-    const handleAddToCart = () => {
-        cartContext.addToCart(product);
-        console.log(cartContext.cart);
-    };
 
     return (!isLoading ?
         <div className='page'>
@@ -72,16 +71,16 @@ export default function ProductPage() {
                     <div className='product-adding'>
                         <p className='product-quantity'>quantité:</p>
                         <div className='qty-buttons'>
-                            <button className='product-qty-btn'>-</button>
+                            <button className='product-qty-btn' onClick={decreaseQuantity}>-</button>
                             <input type='text' className='product-qty' value={1} />
-                            <button className='product-qty-btn'>+</button>
+                            <button className='product-qty-btn' onClick={increaseQuantty}>+</button>
                         </div>
                         <div className='price-div'>
                             <p className='price-placeholder'>Prix:</p>
                             <p className='product-price'>{product.product_price}€</p>
                         </div>
 
-                        <button className='adding-btn' onClick={handleAddToCart} ><img src="/assets/icons/Buy.png" alt="" /></button>
+                        <button className='adding-btn' onClick={() => addToCart()} ><img src="/assets/icons/Buy.png" alt="" /></button>
                     </div>
                 </div>
             </div>

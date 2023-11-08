@@ -8,22 +8,10 @@ import '../styles/cartPage.scss';
 
 export default function CartPage() {
     const cartContext = useContext(CartContext);
-    const { cart, decreaseQuantity, increaseQuantity, removeProduct } = cartContext;
+    const { cart, decreaseQuantity, increaseQuantity, removeProduct, calculateTotal } = cartContext;
     const numberOfProductsInCart = Object.keys(cart).length;
 
-    const calculateTotal = () => {
-        let total = 0;
-
-        // Parcourez les produits dans le panier
-        Object.keys(cart).forEach((productId) => {
-            const product = cart[productId].product;
-            const quantity = cart[productId].quantity;
-            total += product.product_price * quantity;
-        });
-
-        return total;
-    };
-
+    console.log(cart);
     const totalCartAmount = calculateTotal();
 
     return (

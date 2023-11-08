@@ -38,12 +38,26 @@ export const CartContextProvider = ({ children }) => {
         }
     };
 
+
+    const calculateTotal = () => {
+        let total = 0;
+
+        // Parcoure les produits dans le panier
+        Object.keys(cart).forEach((productId) => {
+            const product = cart[productId].product;
+            const quantity = cart[productId].quantity;
+            total += product.product_price * quantity;
+        });
+
+        return total.toFixed(2);
+    };
     const cartData = {
         addToCart,
         cart,
         decreaseQuantity,
         increaseQuantity,
-        removeProduct
+        removeProduct,
+        calculateTotal
     };
 
     return (
