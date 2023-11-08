@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { CartContext } from '../components/CartContext';
 import Banner from '../components/Banner'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -6,35 +7,75 @@ import Footer from '../components/Footer'
 import '../styles/cartPage.scss';
 
 export default function CartPage() {
+    const cartContext = useContext(CartContext);
+    const { cart, decreaseQuantity, increaseQuantity, removeProduct } = cartContext;
+    const numberOfProductsInCart = Object.keys(cart).length;
+
+    const calculateTotal = () => {
+        let total = 0;
+
+        // Parcourez les produits dans le panier
+        Object.keys(cart).forEach((productId) => {
+            const product = cart[productId].product;
+            const quantity = cart[productId].quantity;
+            total += product.product_price * quantity;
+        });
+
+        return total;
+    };
+
+    const totalCartAmount = calculateTotal();
+
     return (
         <div className='cartPage'>
             <Banner />
             <Header />
-            <h1 className='cart-page-title'>Panier</h1>
+            <h1 className='cart-page-title'>Votre panier:</h1>
             <div className='cart-container'>
 
                 <section className='cart-products'>
-                    <div className='columns'>Produits</div>
-                    <div className='columns'>Prix</div>
-                    <div className='columns'>Quantité</div>
-                    <div className='columns'>Total</div>
-                    <div className='columns'>
-                        <img className='cart-product-img' src="/assets/categories/categorytest.png" alt="" />
-                        <div className='cart-prod-desc'><p>Titre de l'article</p>
-                            <p>Description de l'article...</p>
-                        </div>
-                    </div>
-                    <div className='columns'>15€</div>
-                    <div className='columns'><button>-</button>1<button>+</button></div>
-                    <div className='columns'><div>15€</div><button>supprimer</button></div>
+
+                    {Object.keys(cart).map((productId) => {
+                        const item = cart[productId];
+                        const product = item.product;
+                        const quantity = item.quantity;
+                        return (
+                            <div className='cart-product' key={productId}>
+                                <div className='cart-product-column'>
+                                    <img className='cart-product-img' src={product.product_image} alt={product.product_name} />
+                                    <div className='cart-prod-desc'>
+                                        <p>{product.product_name}</p>
+                                    </div>
+                                </div>
+                                <div className='cart-product-column'>{product.product_price}€</div>
+                                <div className='cart-quantity-column'>
+                                    <button onClick={() => decreaseQuantity(productId)}>-</button>
+                                    {quantity}
+                                    <button onClick={() => increaseQuantity(productId)}>+</button>
+                                </div>
+                                <div className='cart-total-column'>
+                                    <div>{product.product_price * quantity}€</div>
+                                    <button onClick={() => removeProduct(productId)}>supprimer</button>
+                                </div>
+                            </div>
+                        );
+                    })}
+
                 </section>
+
                 <section className='cart-recap'>
                     <h1>Total panier</h1>
-                    <div className='numbers-articles'><p>1 article</p><p>39€</p></div>
+                    <div className='numbers-articles'><p> {numberOfProductsInCart === 0 ? (
+                        <p>Votre panier est vide.</p>
+                    ) : (
+                        <p>{numberOfProductsInCart} article(s) </p>
+                    )
+                    }
+                    </p><p>{totalCartAmount} €</p></div>
                     <hr />
                     <div className='cart-shipping'><p>Livraison</p><p>à partir de 5.5€</p></div>
                     <hr />
-                    <div className='cart-recap-total'><p>Total TTC</p><p>39€</p></div>
+                    <div className='cart-recap-total'><p>Total TTC</p><p>{totalCartAmount} €</p></div>
                     <hr />
                     <div className='promo-code'><label htmlFor="">Vous avez un code?</label><input type="text" placeholder='votre code ici...' /></div>
                     <button className='cart-order'>Commander</button>

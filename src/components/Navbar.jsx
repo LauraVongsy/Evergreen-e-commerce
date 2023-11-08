@@ -3,14 +3,16 @@ import UserOverlay from "./UserOverlay";
 import CartOverlay from "./CartOverlay";
 import { Link } from "react-router-dom";
 import "../styles/navbar.scss";
-import { Overlay } from "react-bootstrap";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
   const [showModal, setShowModal] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const [showCart, setShowCart] = useState(false);
+
   const userOverlayRef = useRef();
   const cartOverlayRef = useRef();
+
 
   const handleOpenModal = () => {
     setShowModal(true);
@@ -41,6 +43,7 @@ export default function Navbar() {
       if (cartOverlayRef.current && !cartOverlayRef.current.contains(event.target)) {
         setShowCart(false);
       }
+
     };
 
     //  document.addEventListener pour écouter les clics à l'échelle de la page.
@@ -70,7 +73,7 @@ export default function Navbar() {
           alt="user icon"
           onClick={handleOpenModal}
         />
-        {showModal && <UserOverlay />}
+        {showModal && <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />}
       </div>
       <img
         className="navbar-icon"
@@ -79,12 +82,7 @@ export default function Navbar() {
         onClick={handleOpenSearchbar}
       />
       {showSearchbar && (
-        <div className="searchbar-container">
-          <input className="search-input" type="text" placeholder="Rechercher..." />
-          <button className="searchbar-closing-btn" onClick={handleCloseSearchbar}>
-            X
-          </button>
-        </div>
+        <SearchBar closeSearchBar={handleCloseSearchbar} />
       )}
       <div className="cart-icon-container" ref={cartOverlayRef}>
         <img

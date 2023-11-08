@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { CartContextProvider } from "./components/CartContext";
 import "./pages/HomePage";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
@@ -17,18 +18,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/categories" element={<CategoriesPage />} />
-        <Route path="/categories/:id" element={<SmallPlants />} />
-        <Route path="/products/:id" element={<ProductPage />} />
-        <Route path="/bestsellers" element={<BestSellers />} />
+      <CartContextProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/categories/:id" element={<SmallPlants />} />
+          <Route path="/products/:id" element={<ProductPage />} />
+          <Route path="/bestsellers" element={<BestSellers />} />
 
-        <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog" element={<BlogPage />} />
 
-        <Route path="/cart" element={<CartPage />} />
-      </Routes>
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </CartContextProvider>
     </div>
   );
 }

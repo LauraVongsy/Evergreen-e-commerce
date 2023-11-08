@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { CartContext } from '../components/CartContext';
 import Rates from "./Rates";
 import { Link } from "react-router-dom";
 import "../styles/bestsellers.scss";
 
 export default function BestSellers() {
+  const cartContext = useContext(CartContext);
+  const addToCart = cartContext.addToCart;
   const [isLoading, setIsLoading] = useState(true);
   const [bestsellers, setBestsellers] = useState([]);
+  const [addedToCartMessages, setAddedToCartMessages] = useState({});
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -59,7 +63,21 @@ export default function BestSellers() {
                 <span className="bestsellers-price">{bestseller.product.product_price}€</span>
               </div>
               <div className="div-btn">
-                <button className="card-button">Ajouter au panier</button>
+                <button className={`card-button ${addedToCartMessages[bestseller.product.id_product] ? "added-animation" : ""}`} onClick={(e) => {
+                  e.preventDefault(); // Empêche la redirection
+                  addToCart(bestseller.product);
+                  setAddedToCartMessages((prevState) => ({
+                    ...prevState,
+                    [bestseller.product.id_product]: "Ajouté",
+                  }));
+                  // Réinitialisez l'état après un certain délai (par exemple, 2 secondes)
+                  setTimeout(() => {
+                    setAddedToCartMessages((prevState) => ({
+                      ...prevState,
+                      [bestseller.product.id_product]: "",
+                    }));
+                  }, 2000);
+                }}>{addedToCartMessages[bestseller.product.id_product] || "Ajouter au panier"}</button>
               </div>
             </Link>
           )) : "loading"}

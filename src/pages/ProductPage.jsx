@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
+import { CartContext } from '../components/CartContext';
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -37,6 +38,13 @@ export default function ProductPage() {
         fetchResults();
     }, [id]);
 
+    const cartContext = useContext(CartContext);
+
+    const handleAddToCart = () => {
+        cartContext.addToCart(product);
+        console.log(cartContext.cart);
+    };
+
     return (!isLoading ?
         <div className='page'>
             <Banner />
@@ -73,7 +81,7 @@ export default function ProductPage() {
                             <p className='product-price'>{product.product_price}€</p>
                         </div>
 
-                        <button className='adding-btn' ><img src="/assets/icons/Buy.png" alt="" /></button>
+                        <button className='adding-btn' onClick={handleAddToCart} ><img src="/assets/icons/Buy.png" alt="" /></button>
                     </div>
                 </div>
             </div>
