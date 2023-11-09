@@ -6,7 +6,9 @@ export default function SignUpPage() {
   return (
     <>
       <div className="sign-up-page">
-        <Link className="logo" to="/"><img src="/assets/logos/desktop-logo.png" alt="logo" /></Link>
+        <Link className="logo" to="/">
+          <img src="/assets/logos/desktop-logo.png" alt="logo" />
+        </Link>
 
         <section className="sign-up-form">
           <div className="form-container">
@@ -19,23 +21,31 @@ export default function SignUpPage() {
               <label className="form-label" htmlFor="">
                 Nom
               </label>
-              <input className="form-input" type="text" />
+              <input className="form-input" type="text" value={lastName} />
               <label className="form-label" htmlFor="">
                 Prénom
               </label>
               <input className="form-input" type="text" />
-              <label className="form-label" htmlFor="">
+              <label className="form-label" htmlFor="" value={firstName}>
                 Email
               </label>
-              <input className="form-input" type="email" />
+              <input className="form-input" type="email" value={email} />
               <label className="form-label" htmlFor="">
                 Mot de passe
               </label>
-              <input className="form-input" type="password" />
+              <input
+                className="form-input"
+                type="password"
+                value={first_password}
+              />
               <label className="form-label" htmlFor="">
                 Vérification mot de passe
               </label>
-              <input className="form-input" type="password" />
+              <input
+                className="form-input"
+                type="password"
+                value={second_password}
+              />
               <button className="sign-up-btn">M'inscrire</button>
             </form>
             <button className="google-signup">

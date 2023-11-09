@@ -13,11 +13,9 @@ export default function Navbar() {
   const userOverlayRef = useRef();
   const cartOverlayRef = useRef();
 
-
   const handleOpenModal = () => {
     setShowModal(true);
   };
-
 
   const handleOpenSearchbar = () => {
     setShowSearchbar(true);
@@ -31,19 +29,23 @@ export default function Navbar() {
     setShowCart(true);
   };
 
-
   useEffect(() => {
     // userOverlayRef.current et cartOverlayRef.current veulent dire qu'on est dans l'Overlay
     // et de ce fait si on est dans l'overlay setShowModal reste true.
 
     const handleOutsideClick = (event) => {
-      if (userOverlayRef.current && !userOverlayRef.current.contains(event.target)) {
+      if (
+        userOverlayRef.current &&
+        !userOverlayRef.current.contains(event.target)
+      ) {
         setShowModal(false);
       }
-      if (cartOverlayRef.current && !cartOverlayRef.current.contains(event.target)) {
+      if (
+        cartOverlayRef.current &&
+        !cartOverlayRef.current.contains(event.target)
+      ) {
         setShowCart(false);
       }
-
     };
 
     //  document.addEventListener pour écouter les clics à l'échelle de la page.
@@ -73,7 +75,9 @@ export default function Navbar() {
           alt="user icon"
           onClick={handleOpenModal}
         />
-        {showModal && <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />}
+        {showModal && (
+          <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />
+        )}
       </div>
       <img
         className="navbar-icon"
@@ -81,9 +85,7 @@ export default function Navbar() {
         alt="search icon"
         onClick={handleOpenSearchbar}
       />
-      {showSearchbar && (
-        <SearchBar closeSearchBar={handleCloseSearchbar} />
-      )}
+      {showSearchbar && <SearchBar closeSearchBar={handleCloseSearchbar} />}
       <div className="cart-icon-container" ref={cartOverlayRef}>
         <img
           className="navbar-icon"
