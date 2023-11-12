@@ -1,11 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../components/UserContext";
+
 import "../styles/signupPage.scss";
 
 export default function SignUpPage() {
+
+  const userContext = useContext(UserContext);
+  const { email, setEmail, first_password, setFirstPassword, second_password, setSecondPassword, handleSignUp, isLogged, userFirstname, setUserLastname, setUserFirstname, userLastname } = userContext;
+  const navigate = useNavigate();
   return (
     <>
-      <div className="sign-up-page">
+      {!isLogged ? (<div className="sign-up-page">
         <Link className="logo" to="/">
           <img src="/assets/logos/desktop-logo.png" alt="logo" />
         </Link>
@@ -17,19 +23,22 @@ export default function SignUpPage() {
               faites partie de nos clients et profitez de réductions tout au
               long de l’année...
             </p>
-            <form action="" className="form">
+            <form onSubmit={handleSignUp} className="form">
               <label className="form-label" htmlFor="">
                 Nom
               </label>
-              <input className="form-input" type="text" value={lastName} />
+              <input className="form-input" type="text" value={userLastname} onChange={(e) => setUserLastname(e.target.value)} />
+
               <label className="form-label" htmlFor="">
                 Prénom
               </label>
-              <input className="form-input" type="text" />
-              <label className="form-label" htmlFor="" value={firstName}>
+              <input className="form-input" type="text" value={userFirstname} onChange={(e) => setUserFirstname(e.target.value)} />
+
+              <label className="form-label" htmlFor="">
                 Email
               </label>
-              <input className="form-input" type="email" value={email} />
+              <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+
               <label className="form-label" htmlFor="">
                 Mot de passe
               </label>
@@ -37,7 +46,9 @@ export default function SignUpPage() {
                 className="form-input"
                 type="password"
                 value={first_password}
+                onChange={(e) => setFirstPassword(e.target.value)}
               />
+
               <label className="form-label" htmlFor="">
                 Vérification mot de passe
               </label>
@@ -45,9 +56,12 @@ export default function SignUpPage() {
                 className="form-input"
                 type="password"
                 value={second_password}
+                onChange={(e) => setSecondPassword(e.target.value)}
               />
-              <button className="sign-up-btn">M'inscrire</button>
+
+              <button type="submit" className="sign-up-btn">M'inscrire</button>
             </form>
+
             <button className="google-signup">
               <img src="/assets/socials/google.png" alt="icone google" />
               Se connecter avec GOOGLE
@@ -64,7 +78,7 @@ export default function SignUpPage() {
             alt="photo décoration plantes"
           />
         </section>
-      </div>
+      </div>) : navigate('/')}
     </>
   );
 }

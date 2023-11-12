@@ -1,11 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { UserContext } from "./UserContext";
 import UserOverlay from "./UserOverlay";
 import CartOverlay from "./CartOverlay";
 import { Link } from "react-router-dom";
 import "../styles/navbar.scss";
 import SearchBar from "./SearchBar";
 
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function Navbar() {
+  const { isLogged, userFirstname } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -63,22 +69,29 @@ export default function Navbar() {
       <Link className="navbar-blog" to="/blog">
         <span>Le Blog</span>
       </Link>
+      {isLogged ?
+        (<DropdownButton id="dropdown-item-button" title={`Bienvenue ${userFirstname}`}>
+          <Dropdown.Item as="button"><Link className='category-links' to="/">Mon compte</Link></Dropdown.Item>
+          <Dropdown.Item as="button"><Link className='category-links' to="/">Mes commandes</Link></Dropdown.Item>
+          <Dropdown.Item as="button"><Link className='category-links' to="">Mes informations</Link></Dropdown.Item>
+          <Dropdown.Item as="button"><Link className='category-links' to="">Me déconnecter</Link></Dropdown.Item>
+        </DropdownButton>) :
+        (
+          <div className="user-icon-container" ref={userOverlayRef}>
+            <img
+              className="navbar-icon"
+              src="/assets/icons/User.png"
+              alt="user icon"
+              onClick={handleOpenModal}
+            />
+            {showModal && (
+              <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />
+            )}
+          </div>
+        )
+      }
 
-      {/* ref fait référence à un élément du DOM du composant
-      ref={userOverlayRef} est ajouté à la <div> contenant l'overlay de l'utilisateur
-       et ref={cartOverlayRef} est ajouté à la <div> contenant l'overlay du panier. */}
 
-      <div className="user-icon-container" ref={userOverlayRef}>
-        <img
-          className="navbar-icon"
-          src="/assets/icons/User.png"
-          alt="user icon"
-          onClick={handleOpenModal}
-        />
-        {showModal && (
-          <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />
-        )}
-      </div>
       <img
         className="navbar-icon"
         src="/assets/icons/Search.png"
