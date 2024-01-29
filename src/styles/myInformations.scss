@@ -1,0 +1,28 @@
+.my-infos-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 100px;
+}
+.my-infos-gender {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+  //   margin-top: 15px;
+  //   margin-bottom: 15px;
+}
+.my-infos-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+  label {
+    margin-right: 30px;
+  }
+}

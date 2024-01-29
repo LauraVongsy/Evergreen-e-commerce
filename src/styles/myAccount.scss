@@ -1,0 +1,45 @@
+@import "./colors.scss";
+
+.my-account-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  align-items: center;
+}
+
+.my-account {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+.my-account-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+.my-account-sections {
+  border: none;
+  width: 100%;
+  background-color: $rose;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  &:hover {
+    background-color: #ebd4ca;
+  }
+}
+.active-my-account-sections {
+  border: none;
+  width: 100%;
+  background-color: $rose;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #ebd4ca;
+}
+.my-account-section-content {
+  display: flex;
+  align-items: center;
+  width: 80%;
+}

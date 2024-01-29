@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import "../styles/navbar.scss";
 import SearchBar from "./SearchBar";
 
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navbar() {
   const { isLogged, userFirstname } = useContext(UserContext);
@@ -64,33 +64,60 @@ export default function Navbar() {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.clear();
+    UserContext.isLogged = false;
+    window.location.reload();
+  };
+
   return (
     <div className="navbar-container">
       <Link className="navbar-blog" to="/blog">
         <span>Le Blog</span>
       </Link>
-      {isLogged ?
-        (<DropdownButton id="dropdown-item-button" title={`Bienvenue ${userFirstname}`}>
-          <Dropdown.Item as="button"><Link className='category-links' to="/">Mon compte</Link></Dropdown.Item>
-          <Dropdown.Item as="button"><Link className='category-links' to="/">Mes commandes</Link></Dropdown.Item>
-          <Dropdown.Item as="button"><Link className='category-links' to="">Mes informations</Link></Dropdown.Item>
-          <Dropdown.Item as="button"><Link className='category-links' to="">Me déconnecter</Link></Dropdown.Item>
-        </DropdownButton>) :
-        (
-          <div className="user-icon-container" ref={userOverlayRef}>
-            <img
-              className="navbar-icon"
-              src="/assets/icons/User.png"
-              alt="user icon"
-              onClick={handleOpenModal}
-            />
-            {showModal && (
-              <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />
-            )}
-          </div>
-        )
-      }
-
+      {isLogged ? (
+        <DropdownButton
+          id="dropdown-item-button"
+          title={`Bienvenue ${userFirstname}`}
+        >
+          <Dropdown.Item as="button">
+            <Link className="category-links" to="/compte">
+              Mon compte
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item as="button">
+            <Link className="category-links" to="/">
+              Mes commandes
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item as="button">
+            <Link className="category-links" to="">
+              Mes informations
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item as="button">
+            <Link
+              onClick={() => handleLogout()}
+              className="category-links"
+              to="/"
+            >
+              Me déconnecter
+            </Link>
+          </Dropdown.Item>
+        </DropdownButton>
+      ) : (
+        <div className="user-icon-container" ref={userOverlayRef}>
+          <img
+            className="navbar-icon"
+            src="/assets/icons/User.png"
+            alt="user icon"
+            onClick={handleOpenModal}
+          />
+          {showModal && (
+            <UserOverlay handleCloseSearchbar={handleCloseSearchbar} />
+          )}
+        </div>
+      )}
 
       <img
         className="navbar-icon"

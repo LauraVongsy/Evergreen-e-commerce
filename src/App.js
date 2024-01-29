@@ -9,12 +9,10 @@ import CategoriesPage from "./pages/CategoriesPage";
 import SmallPlants from "./pages/CategoryPage";
 import ProductPage from "./pages/ProductPage";
 import BestSellers from "./components/BestSellers";
-
-
 import CartPage from "./pages/CartPage";
-
 import BlogPage from "./pages/BlogPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+import MyAccount from "./pages/MyAccount";
 
 function App() {
   return (
@@ -28,10 +26,9 @@ function App() {
             <Route path="/categories/:id" element={<SmallPlants />} />
             <Route path="/products/:id" element={<ProductPage />} />
             <Route path="/bestsellers" element={<BestSellers />} />
-
             <Route path="/blog" element={<BlogPage />} />
-
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/compte" element={<MyAccount />} />
           </Routes>
         </CartContextProvider>
       </UserContextProvider>
