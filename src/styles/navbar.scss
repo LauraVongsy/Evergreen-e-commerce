@@ -1,7 +1,5 @@
 @import "./colors.scss";
 
-
-
 .navbar-container {
   display: flex;
   flex-direction: row;
@@ -40,7 +38,6 @@
 
 .search-input {
   height: 30px;
-
 }
 
 .searchbar-closing-btn {
@@ -118,8 +115,6 @@ input:focus {
   color: white;
 }
 
-
-
 .overlayCart {
   color: white;
   position: absolute;
@@ -140,6 +135,24 @@ input:focus {
   .item-thumb {
     width: 70%;
   }
+}
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+#lblCartCount {
+  font-size: 12px;
+  // background: $green;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -21px;
+  margin-top: 8px;
 }
 
 @media (max-width: 1200px) {

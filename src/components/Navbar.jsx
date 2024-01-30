@@ -135,7 +135,9 @@ export default function Navbar() {
           alt="cart icon"
           onClick={handleOpenCart}
         />
-        <span>{numberOfItems()}</span>
+        <span className="badge" id="lblCartCount">
+          {numberOfItems()}
+        </span>
         {showCart && <CartOverlay />}
       </div>
     </div>
