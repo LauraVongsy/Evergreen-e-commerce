@@ -1,8 +1,20 @@
+@import "./colors.scss";
 .my-infos-form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 100px;
+
+  align-items: center;
+}
+.my-infos-form-columns {
+  display: flex;
+  flex-direction: row;
+}
+.my-infos-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 50px 0 50px;
 }
 .my-infos-gender {
   display: flex;
@@ -16,13 +28,28 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  margin: 5px 0 5px 0;
   input {
     outline: none;
-    border: none;
-    border-bottom: 1px solid black;
+    border: 1px solid gray;
   }
   label {
     margin-right: 30px;
+  }
+}
+.my-infos-form-btn {
+  background-color: $rose;
+  border: none;
+  width: 100px;
+  height: 40px;
+  box-shadow: 2px 2px 2px gray;
+  margin-top: 10px;
+}
+.my-infos-newsletter-checkbox {
+  display: flex;
+  flex-direction: row;
+  label {
+    margin-right: 10px;
   }
 }

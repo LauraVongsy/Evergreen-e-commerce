@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import { UserContext } from "./UserContext";
+import { CartContext } from "./CartContext";
 import UserOverlay from "./UserOverlay";
 import CartOverlay from "./CartOverlay";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navbar() {
+  const { numberOfItems } = useContext(CartContext);
   const { isLogged, userFirstname } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
@@ -133,6 +135,7 @@ export default function Navbar() {
           alt="cart icon"
           onClick={handleOpenCart}
         />
+        <span>{numberOfItems()}</span>
         {showCart && <CartOverlay />}
       </div>
     </div>

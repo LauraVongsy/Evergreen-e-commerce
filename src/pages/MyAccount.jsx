@@ -9,16 +9,17 @@ import MySponsorships from "../components/MySponsorships";
 import MyCoupons from "../components/MyCoupons";
 
 export default function MyAccount() {
-  const [selectedSection, setSelectedSection] = useState([]);
-  const [isActive, setIsActive] = useState(false);
+  const [selectedSection, setSelectedSection] = useState(1);
 
   const handleSelect = (number) => {
     setSelectedSection(number);
   };
 
-  const buttonClass = isActive
-    ? "active-my-account-sections"
-    : "my-account-sections";
+  const getButtonClass = (sectionNumber) => {
+    return selectedSection === sectionNumber
+      ? "active-my-account-sections"
+      : "my-account-sections";
+  };
 
   return (
     <div className="my-account-container">
@@ -26,16 +27,16 @@ export default function MyAccount() {
       <Header />
       <div className="my-account">
         <div className="my-account-menu">
-          <button className={buttonClass} onClick={() => handleSelect(1)}>
+          <button className={getButtonClass(1)} onClick={() => handleSelect(1)}>
             Mes informations
           </button>
-          <button className={buttonClass} onClick={() => handleSelect(2)}>
+          <button className={getButtonClass(2)} onClick={() => handleSelect(2)}>
             Mes commandes
           </button>
-          <button className={buttonClass} onClick={() => handleSelect(3)}>
+          <button className={getButtonClass(3)} onClick={() => handleSelect(3)}>
             Mes bons d'achats
           </button>
-          <button className={buttonClass} onClick={() => handleSelect(4)}>
+          <button className={getButtonClass(4)} onClick={() => handleSelect(4)}>
             Mes parainages
           </button>
         </div>
