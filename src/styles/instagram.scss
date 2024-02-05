@@ -9,6 +9,7 @@
 }
 
 .insta-title {
+  text-align: center;
   color: $green;
   font-family: "Playfair Display", serif;
   font-size: xx-large;
@@ -34,12 +35,12 @@
 @media (max-width: 900px) {
   .insta-grid {
     margin: 50px 0px;
-    width: 70%;
+    width: 90%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
     justify-items: center;
   }
 }

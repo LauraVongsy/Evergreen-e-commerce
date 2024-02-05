@@ -13,24 +13,27 @@ import CartPage from "./pages/CartPage";
 import BlogPage from "./pages/BlogPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyAccount from "./pages/MyAccount";
+import { AuthProvider } from "./components/AuthContext";
 
 function App() {
   return (
     <div className="App">
       <UserContextProvider>
-        <CartContextProvider>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/categories/:id" element={<SmallPlants />} />
-            <Route path="/products/:id" element={<ProductPage />} />
-            <Route path="/bestsellers" element={<BestSellers />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/compte" element={<MyAccount />} />
-          </Routes>
-        </CartContextProvider>
+        <AuthProvider>
+          <CartContextProvider>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/categories" element={<CategoriesPage />} />
+              <Route path="/categories/:id" element={<SmallPlants />} />
+              <Route path="/products/:id" element={<ProductPage />} />
+              <Route path="/bestsellers" element={<BestSellers />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/compte" element={<MyAccount />} />
+            </Routes>
+          </CartContextProvider>
+        </AuthProvider>
       </UserContextProvider>
     </div>
   );

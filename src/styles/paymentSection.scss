@@ -1,0 +1,37 @@
+@import "./colors.scss";
+
+.payment-form-container {
+    padding: 20px;
+    margin: 50px 0 0 100px;
+    background-color: $rose;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: auto;
+
+    .card-element {
+        margin: 50px 0 50px 10px;
+        width: 90%;
+    }
+
+    .payment-form-title {
+        margin-bottom: 20px;
+    }
+
+    .pay-now-btn {
+        margin: 10px 0 0 0;
+        display: flex;
+        color: white;
+        background-color: $green;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        padding: 5px;
+    }
+
+    .payment-form-titles {
+        margin: 30px 0 0 10px;
+    }
+}

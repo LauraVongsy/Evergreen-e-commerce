@@ -9,6 +9,19 @@ import { useParams } from "react-router-dom";
 
 export default function ProductPage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [animationTriggered, setAnimationTriggered] = useState(false);
+
+    const handleClick = () => {
+        // Déclencher l'animation en mettant à jour l'état
+        setAnimationTriggered(true);
+        addToCartProductPage(product, quantity);
+    };
+
+    // Réinitialiser l'état après la fin de l'animation
+    const handleAnimationEnd = () => {
+        setAnimationTriggered(false);
+    };
+
 
     const { id } = useParams();
 
@@ -93,8 +106,9 @@ export default function ProductPage() {
                         </div>
 
                         <button
-                            className="adding-btn"
-                            onClick={() => addToCartProductPage(product, quantity)}
+                            className={`adding-btn ${animationTriggered ? 'animate' : ''}`}
+                            onClick={handleClick}
+                            onAnimationEnd={handleAnimationEnd}
                         >
                             <img src="/assets/icons/Buy.png" alt="" />
                         </button>

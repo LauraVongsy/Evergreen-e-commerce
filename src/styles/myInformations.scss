@@ -1,55 +1,77 @@
 @import "./colors.scss";
+
 .my-infos-form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   align-items: center;
+
 }
+
+
 .my-infos-form-columns {
   display: flex;
-  flex-direction: row;
+
+  &.my-account {
+    flex-direction: row;
+  }
+
+  &.payment {
+    flex-direction: column;
+  }
 }
+
 .my-infos-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 50px 0 50px;
 }
-.my-infos-gender {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: baseline;
-  //   margin-top: 15px;
-  //   margin-bottom: 15px;
-}
+
 .my-infos-inputs {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 5px 0 5px 0;
+
   input {
     outline: none;
     border: 1px solid gray;
   }
+
   label {
     margin-right: 30px;
   }
 }
+
 .my-infos-form-btn {
   background-color: $rose;
   border: none;
   width: 100px;
   height: 40px;
   box-shadow: 2px 2px 2px gray;
-  margin-top: 10px;
+  margin-top: 20px;
+  place-items: center;
+
+  &.payment {
+    display: none;
+  }
 }
+
 .my-infos-newsletter-checkbox {
   display: flex;
   flex-direction: row;
+
   label {
-    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  input {
+    margin-left: 50px;
+  }
+
+  &.payment {
+    display: none;
   }
 }

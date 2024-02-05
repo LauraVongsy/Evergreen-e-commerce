@@ -42,7 +42,7 @@ export default function MyAccount() {
         </div>
         <div className="my-account-section-content">
           {selectedSection === 1 ? (
-            <MyInformations />
+            <MyInformations layout={"my-infos"} />
           ) : selectedSection === 2 ? (
             <MyCommands />
           ) : selectedSection === 3 ? (

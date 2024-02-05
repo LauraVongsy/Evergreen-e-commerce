@@ -13,6 +13,7 @@
   flex-direction: row;
   width: 70%;
 }
+
 .my-account-menu {
   display: flex;
   flex-direction: column;
@@ -21,16 +22,19 @@
   width: 20%;
   // box-shadow: 2px 2px 2px gray;
 }
+
 .my-account-sections {
   border: none;
   width: 100%;
   background-color: $rose;
   padding-top: 15px;
   padding-bottom: 15px;
+
   &:hover {
     background-color: #ebd4ca;
   }
 }
+
 .active-my-account-sections {
   border: none;
   width: 100%;
@@ -39,10 +43,10 @@
   padding-bottom: 15px;
   background-color: #ebd4ca;
 }
+
 .my-account-section-content {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin-left: 50px;
-  width: 80%;
 }

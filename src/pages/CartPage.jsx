@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../components/CartContext";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PaymentSection from "../components/PaymentSection";
 
 import "../styles/cartPage.scss";
 
@@ -13,13 +14,12 @@ export default function CartPage() {
     decreaseQuantity,
     increaseQuantity,
     removeProduct,
-    calculateTotal,
+    totalCartAmount,
     numberOfItems,
   } = cartContext;
-  // const numberOfProductsInCart = Object.keys(cart).length;
+  const [showStripe, setShowStripe] = useState(false);
 
   console.log("nombre d articles", numberOfItems());
-  const totalCartAmount = calculateTotal();
 
   return (
     <div className="cartPage">
@@ -61,6 +61,7 @@ export default function CartPage() {
               </div>
             );
           })}
+
         </section>
 
         <section className="cart-recap">
@@ -91,10 +92,15 @@ export default function CartPage() {
             <label htmlFor="">Vous avez un code?</label>
             <input type="text" placeholder="votre code ici..." />
           </div>
-          <button className="cart-order">Commander</button>
+          <button className="cart-order" onClick={() => setShowStripe(true)}>Commander</button>
+
         </section>
+
+
       </div>
+      {showStripe ? <div > <PaymentSection /> </div> : null}
       <Footer />
     </div>
+
   );
 }

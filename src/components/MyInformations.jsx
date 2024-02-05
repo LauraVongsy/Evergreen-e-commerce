@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "../styles/myInformations.scss";
 import { UserContext } from "./UserContext";
 
-export default function MyInformations() {
+export default function MyInformations({ layout }) {
   const userContext = useContext(UserContext);
   const { userId, email, userFirstname, userLastname } = userContext;
 
@@ -38,23 +38,16 @@ export default function MyInformations() {
     }
   };
   return (
-    <form onSubmit={() => updateInfos} className="my-infos-form">
-      <div className="my-infos-form-columns">
+    <form onSubmit={updateInfos} className="my-infos-form" >
+      <div className={`my-infos-form-columns ${layout === 'my-infos' ? 'my-account' : 'payment'}`}>
         <div className="my-infos-column">
-          <div className="my-infos-gender">
-            <p>Titre</p>
-            <input type="radio" id="" name="Mr" value="Mr" />
-            <label for="">Mr</label>
-            <input type="radio" id="" name="Mrs" value="Mrs" checked />
-            <label for="">Mrs</label>
-          </div>
           <div className="my-infos-inputs">
             <label for="">Nom</label>
             <input
               type="text"
               id=""
               name="nom"
-              onChange={(e) => setFormUserLastname(e)}
+              onChange={(e) => setFormUserLastname(e.target.value)}
               value={formUserLastname}
             />
           </div>
@@ -64,7 +57,7 @@ export default function MyInformations() {
               type="text"
               id=""
               name="prénom"
-              onChange={(e) => setFormUserFirstname(e)}
+              onChange={(e) => setFormUserFirstname(e.target.value)}
               value={formUserFirstname}
             />
           </div>
@@ -74,7 +67,7 @@ export default function MyInformations() {
               type="text"
               id=""
               name="email"
-              onChange={(e) => setFormEmail(e)}
+              onChange={(e) => setFormEmail(e.target.value)}
               value={formEmail}
             />
           </div>
@@ -87,7 +80,7 @@ export default function MyInformations() {
               type="password"
               id=""
               name="password"
-              onChange={(e) => setFormFirstPassword(e)}
+              onChange={(e) => setFormFirstPassword(e.target.value)}
               value={formFirstPassword}
             />
           </div>
@@ -97,7 +90,7 @@ export default function MyInformations() {
               type="password"
               id=""
               name="new password"
-              onChange={(e) => setFormSecondPassword(e)}
+              onChange={(e) => setFormSecondPassword(e.target.value)}
               value={formSecondPassword}
             />
           </div>
@@ -106,14 +99,15 @@ export default function MyInformations() {
             <label for="">Date de naissance</label>
             <input type="date" id="" name="birthdate" value="" />
           </div>
-          <div className="my-infos-newsletter-checkbox">
-            <label for="">Recevoir notre newsletter</label>
-            <input type="checkbox" id="" name="newsletter" value="" />
-          </div>
-        </div>
-      </div>
 
-      <button onClick={onsubmit} className="my-infos-form-btn">
+        </div>
+
+      </div>
+      <div className={`my-infos-newsletter-checkbox ${layout === 'my-infos' ? 'my-account' : 'payment'}`}>
+        <input type="checkbox" id="" name="newsletter" value="" />
+        <label for="">Recevoir notre newsletter</label>
+      </div>
+      <button type="submit" className={`my-infos-form-btn ${layout === 'my-infos' ? 'my-account' : 'payment'}`}>
         Sauvegarder
       </button>
     </form>

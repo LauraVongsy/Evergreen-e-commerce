@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 
 
+
 export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
@@ -12,7 +13,7 @@ export const UserContextProvider = ({ children }) => {
   const [userFirstname, setUserFirstname] = useState('');
   const [userLastname, setUserLastname] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     // Vérifier la présence du token au chargement initial
@@ -32,6 +33,8 @@ export const UserContextProvider = ({ children }) => {
 
     if (!email || !password) {
       console.error('Email et mot de passe requis');
+      setErrorMessage('Email et mot de passe requis');
+      console.log(errorMessage);
       return;
     }
 
@@ -59,20 +62,21 @@ export const UserContextProvider = ({ children }) => {
         setUserLastname(userLastname);
         setIsLogged(true);
 
-
-
         // Nettoyer le mot de passe en mémoire
         setPassword('');
-
-        // Vous pourriez également rediriger l'utilisateur vers une autre page ici
       } else {
         const error = await response.json();
         console.error('Erreur du serveur:', error);
-        // Gérez l'erreur d'authentification côté client
+        setErrorMessage('Mot de passe invalide');
+        console.log(errorMessage);
+
+
       }
     } catch (error) {
       console.error('Erreur lors de la requête d\'authentification:', error);
-      // Gérez les erreurs de requête côté client
+      setErrorMessage('Une erreur s\'est produite lors de la connexion. Veuillez réessayer.');
+      console.log(errorMessage);
+
     }
   };
 
@@ -147,7 +151,7 @@ export const UserContextProvider = ({ children }) => {
 
 
   const userData = {
-    email, password, userId, setUserId, setEmail, setPassword, handleSignIn, handleSignUp, isLogged, userFirstname, setUserFirstname, setUserLastname, userLastname, setFirstPassword, setSecondPassword
+    email, password, userId, setUserId, setEmail, setPassword, handleSignIn, handleSignUp, setIsLogged, isLogged, userFirstname, setUserFirstname, setUserLastname, userLastname, setFirstPassword, setSecondPassword
   }
 
   return (

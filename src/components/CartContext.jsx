@@ -1,36 +1,50 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useContext } from "react";
+import { UserContext } from "./UserContext";
 
 export const CartContext = createContext();
 
+
 export const CartContextProvider = ({ children }) => {
+
   const [cart, setCart] = useState({});
+  const userContext = useContext(UserContext);
+  const { userId } = userContext;
+  console.log(userId);
+
+
+
+  const saveCartOnBdd = async () => {
+
+    try {
+      await fetch(`/api/cart/add-to-cart`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          products: Object.keys(cart).map((id_produit) => ({
+            id_produit,
+            quantity: cart[id_produit].quantity,
+          })),
+        }),
+      });
+
+
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du panier:", error);
+    }
+  };
+
+
+  const saveCartToLocalStorage = () => {
+    localStorage.setItem(cart, JSON.stringify(cart));
+  };
+
 
   useEffect(() => {
-    // Effectuez la requête POST vers le backend à chaque modification du panier
-    const updateCartOnBackend = async () => {
-      try {
-        await fetch("/api/cart/:id/add-to-cart", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            products: Object.keys(cart).map((id_produit) => ({
-              id_produit,
-              quantity: cart[id_produit].quantity,
-            })),
-          }),
-        });
+    saveCartToLocalStorage();
+  }, [cart, userId]);
 
-        // Gérez la réponse si nécessaire
-      } catch (error) {
-        console.error("Erreur lors de la mise à jour du panier:", error);
-      }
-    };
-
-    // Appelez la fonction pour mettre à jour le panier sur le backend
-    updateCartOnBackend();
-  }, [cart]);
 
   const addToCart = (product) => {
     setCart((prevCart) => {
@@ -121,13 +135,18 @@ export const CartContextProvider = ({ children }) => {
     return total;
   };
 
+  const totalCartAmount = calculateTotal();
+
+
   const cartData = {
+    saveCartOnBdd,
     addToCart,
     cart,
     decreaseQuantity,
     increaseQuantity,
     removeProduct,
     calculateTotal,
+    totalCartAmount,
     addToCartProductPage,
     numberOfItems,
   };

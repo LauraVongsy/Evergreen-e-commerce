@@ -5,13 +5,15 @@ export default function Footer() {
   return (
     <div className="footer">
       <div className="footer-contacts">
-        <p>Nous contacter</p>
+
+        <p>Nous contacter:</p>
+        <p>
+          Par <a className="footer-mailto" href="mailto:contact@evergreen.fr">e-mail</a>.
+        </p>
         <p>
           Service client: <br /> 0800 306 30 9
         </p>
-        <p>
-          Par mail: <br /> contact@evergreen.com
-        </p>
+
       </div>
       <div className="socials">
         <p>Nous trouver sur les réseaux sociaux:</p>

@@ -25,6 +25,10 @@
   }
 }
 
+.footer-mailto {
+  color: black;
+}
+
 .socials {
   width: 20%;
 
@@ -60,6 +64,25 @@
     &:active {
       text-decoration: none;
       color: $green;
+    }
+  }
+}
+
+@media (max-width:650px) {
+  .footer {
+    padding: 10px;
+    font-size: small;
+
+    .media-icons {
+      width: 25px;
+      margin: 2px;
+      height: auto;
+    }
+
+    .cgu,
+    .socials,
+    .footer-contacts {
+      width: 30%;
     }
   }
 }

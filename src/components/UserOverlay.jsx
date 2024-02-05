@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
+import { useAuth } from "./AuthContext";
 
 export default function UserOverlay() {
     const userContext = useContext(UserContext);
-    const { email, setEmail, setPassword, password, handleSignIn, isLogged } = userContext;
+    const { email, setEmail, setPassword, password, handleSignIn, isLogged, errorMessage } = userContext;
+    console.log('error message useroverlay', errorMessage);
+    const { signInWithGoogle } = useAuth();
+
 
     return (
         !isLogged ? (
@@ -24,10 +28,13 @@ export default function UserOverlay() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button className="validate-btn" onClick={handleSignIn}>
+                <button className="validate-btn" onClick={(e) => handleSignIn(e)}>
                     Valider
                 </button>
-                <button className="social-btn">
+                {errorMessage ? <span>{`erreur:${errorMessage}`}</span> : null}
+
+
+                <button onClick={signInWithGoogle} className="social-btn">
                     {" "}
                     <img
                         className="social-icons"
@@ -35,15 +42,6 @@ export default function UserOverlay() {
                         alt=""
                     />{" "}
                     Se connecter avec Google
-                </button>
-                <button className="social-btn">
-                    {" "}
-                    <img
-                        className="social-icons"
-                        src="/assets/socials/instagram.png"
-                        alt=""
-                    />{" "}
-                    Se connecter avec Instagram
                 </button>
                 <Link className='register' to="/signup">M'inscrire</Link>
             </div>

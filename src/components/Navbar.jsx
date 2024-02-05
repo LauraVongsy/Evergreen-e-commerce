@@ -6,14 +6,18 @@ import CartOverlay from "./CartOverlay";
 import { Link } from "react-router-dom";
 import "../styles/navbar.scss";
 import SearchBar from "./SearchBar";
+import ShopButton from './ShopButton'
 
+
+import { AuthContext } from "./AuthContext.jsx";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navbar() {
+  const { signOutUser } = useContext(AuthContext);
   const { numberOfItems } = useContext(CartContext);
-  const { isLogged, userFirstname } = useContext(UserContext);
+  const { setIsLogged, isLogged, userFirstname, setUserFirstname, setUserLastname } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -66,17 +70,24 @@ export default function Navbar() {
     };
   }, []);
 
-  const handleLogout = () => {
-    localStorage.clear();
-    UserContext.isLogged = false;
-    window.location.reload();
+  const handleLogout = async () => {
+    try {
+      await signOutUser();
+      setIsLogged(false);
+      setUserFirstname('');
+      setUserLastname('');
+      localStorage.clear();
+      window.location.reload();
+
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+
   };
 
   return (
     <div className="navbar-container">
-      <Link className="navbar-blog" to="/blog">
-        <span>Le Blog</span>
-      </Link>
+      <ShopButton />
       {isLogged ? (
         <DropdownButton
           id="dropdown-item-button"
