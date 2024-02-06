@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CartContext } from "../components/CartContext";
-import { Link } from "react-router-dom";
+import BestSellerCard from "./BestsellerCard";
 
 import "../styles/bestsellers.scss";
 
@@ -33,6 +33,12 @@ export default function BestSellers() {
 
     fetchResults();
   }, []);
+  const updateAddedToCartMessages = (productId, message) => {
+    setAddedToCartMessages({
+      ...addedToCartMessages,
+      [productId]: message,
+    });
+  };
 
   return !isLoading ? (
     <div className="bestsellers-container">
@@ -45,57 +51,13 @@ export default function BestSellers() {
       <div className="bestsellers-cards-container">
         {bestsellers
           ? bestsellers.map((bestseller, index) => (
-            <Link
-              to={`/products/${bestseller.product.id_product}`}
-              className="bestsellers-card"
+            <BestSellerCard
               key={index}
-            >
-              <img
-                className="bestsellers-img"
-                src={bestseller.product.product_image}
-                alt=""
-              />
-              <div className="bestsellers-card-desc">
-                <h2 className="card-title">
-                  {bestseller.product.product_name}
-                </h2>
-                <p className="card-desc">
-                  {bestseller.product.product_short_desc}
-                </p>
-              </div>
-              <div className="rates-and-price">
-                <p>Prix:</p>
-                <span className="bestsellers-price">
-                  {bestseller.product.product_price}€
-                </span>
-              </div>
-              <div className="div-btn">
-                <button
-                  className={`card-button ${addedToCartMessages[bestseller.product.id_product]
-                      ? "added-animation"
-                      : ""
-                    }`}
-                  onClick={(e) => {
-                    e.preventDefault(); // Empêche la redirection
-                    addToCart(bestseller.product);
-                    setAddedToCartMessages((prevState) => ({
-                      ...prevState,
-                      [bestseller.product.id_product]: "Ajouté",
-                    }));
-                    // Réinitialisez l'état après un certain délai (par exemple, 2 secondes)
-                    setTimeout(() => {
-                      setAddedToCartMessages((prevState) => ({
-                        ...prevState,
-                        [bestseller.product.id_product]: "",
-                      }));
-                    }, 2000);
-                  }}
-                >
-                  {addedToCartMessages[bestseller.product.id_product] ||
-                    "Ajouter au panier"}
-                </button>
-              </div>
-            </Link>
+              bestseller={bestseller}
+              addToCart={addToCart}
+              addedToCartMessages={addedToCartMessages}
+              updateAddedToCartMessages={updateAddedToCartMessages}
+            />
           ))
           : "loading"}
       </div>
