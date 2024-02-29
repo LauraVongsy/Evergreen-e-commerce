@@ -65,7 +65,7 @@ export default function SearchBar({ closeSearchBar }) {
 
     return (
         <div className="searchbar-container">
-            <input className="search-input" type="text" placeholder="Rechercher..." onChange={handleInputChange} value={inputValue} />
+            <input className="search-input" type="text" placeholder="Rechercher..." onChange={handleInputChange} value={inputValue} maxLength="50" />
             {showSearchBarOverlay && inputValue !== '' && isProductInList.length > 0 && (
                 <div ref={searchbarOverlayRef} className="searchbar-overlay">
                     <p>Résultats :</p>

@@ -25,8 +25,6 @@ export default function ProductPage() {
 
     const { id } = useParams();
 
-    const [product, setProduct] = useState([]);
-    const [quantity, setQuantity] = useState(1);
 
     const addQuantity = () => {
         setQuantity(quantity + 1);
@@ -38,6 +36,10 @@ export default function ProductPage() {
     };
 
     const { cart, addToCartProductPage } = useContext(CartContext);
+
+
+    const [product, setProduct] = useState([]);
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -79,9 +81,9 @@ export default function ProductPage() {
                     <div className="product-params">
                         <div className="plant-needs">
                             <p>Besoins:</p>
-                            <img src="/assets/icons/Water.png" alt="" />
-                            <img src="/assets/icons/Sun.png" alt="" />
-                            <img src="/assets/icons/Heat.png" alt="" />
+                            <img src="/assets/icons/Water.png" alt="icône goutte d'eau" />
+                            <img src="/assets/icons/Sun.png" alt="icône soleil" />
+                            <img src="/assets/icons/Heat.png" alt="icône chaleur" />
                         </div>
                         <div className="plant-level">
                             <p>Niveau:</p>

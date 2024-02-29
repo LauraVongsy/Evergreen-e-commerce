@@ -62,6 +62,10 @@
 }
 
 @media (max-width: 1250px) {
+  .about-img {
+    object-fit: cover;
+  }
+
   .title-text {
     color: white;
     font-family: "Playfair Display", serif;
@@ -90,19 +94,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .title-text {
+      color: $green;
+      font-family: "Playfair Display", serif;
+      font-size: large;
+      font-style: italic;
+    }
+
+    .about-text {
+      color: $green;
+      font-family: "Playfair Display", serif;
+      font-size: medium;
+      font-style: italic;
+    }
   }
 
-  .title-text {
-    color: $green;
-    font-family: "Playfair Display", serif;
-    font-size: large;
-    font-style: italic;
-  }
 
-  .about-text {
-    color: $green;
-    font-family: "Playfair Display", serif;
-    font-size: medium;
-    font-style: italic;
-  }
+
+
 }

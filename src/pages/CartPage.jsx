@@ -90,7 +90,7 @@ export default function CartPage() {
           <hr />
           <div className="promo-code">
             <label htmlFor="">Vous avez un code?</label>
-            <input type="text" placeholder="votre code ici..." />
+            <input type="text" placeholder="votre code ici..." maxLength="50" />
           </div>
           <button className="cart-order" onClick={() => setShowStripe(true)}>Commander</button>
 

@@ -14,6 +14,7 @@ export const UserContextProvider = ({ children }) => {
   const [userLastname, setUserLastname] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [errorMessage, setErrorMessage] = useState('')
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   useEffect(() => {
     // Vérifier la présence du token au chargement initial
@@ -31,10 +32,9 @@ export const UserContextProvider = ({ children }) => {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      console.error('Email et mot de passe requis');
-      setErrorMessage('Email et mot de passe requis');
-      console.log(errorMessage);
+    if (!emailRegex.test(email) || !password) {
+      console.error('Email correct et mot de passe requis');
+      setErrorMessage('Email correct et mot de passe requis');
       return;
     }
 
@@ -92,8 +92,8 @@ export const UserContextProvider = ({ children }) => {
     console.log('Prénom:', userFirstname);
 
 
-    if (!email || !first_password || !second_password || !userLastname || !userFirstname) {
-      console.error('Tous les champs sont requis');
+    if (!emailRegex.test(email) || !first_password || !second_password || !userLastname || !userFirstname) {
+      console.error('Tous les champs sont requis, vérifiez le format de votre email');
       return;
     }
     if (first_password !== second_password) {

@@ -45,7 +45,7 @@ export default function CategoriesPage() {
           <div className="categories-grid">
             {categories ? categories.map((category, index) => (
               <div className="category-card" key={index}>
-                <Link to={`/categories/${category.category_id}`} className="card-img"><img
+                <Link to={`/categories/${category.id_category}`} className="card-img"><img
 
                   src={category.category_picture}
                   alt=""

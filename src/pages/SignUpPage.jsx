@@ -27,17 +27,17 @@ export default function SignUpPage() {
               <label className="form-label" htmlFor="">
                 Nom
               </label>
-              <input className="form-input" type="text" value={userLastname} onChange={(e) => setUserLastname(e.target.value)} />
+              <input className="form-input" type="text" value={userLastname} onChange={(e) => setUserLastname(e.target.value)} maxLength="50" />
 
               <label className="form-label" htmlFor="">
                 Prénom
               </label>
-              <input className="form-input" type="text" value={userFirstname} onChange={(e) => setUserFirstname(e.target.value)} />
+              <input className="form-input" type="text" value={userFirstname} onChange={(e) => setUserFirstname(e.target.value)} maxLength="50" />
 
               <label className="form-label" htmlFor="">
                 Email
               </label>
-              <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength="50" />
 
               <label className="form-label" htmlFor="">
                 Mot de passe
@@ -47,6 +47,7 @@ export default function SignUpPage() {
                 type="password"
                 value={first_password}
                 onChange={(e) => setFirstPassword(e.target.value)}
+                maxLength="50"
               />
 
               <label className="form-label" htmlFor="">
@@ -57,6 +58,7 @@ export default function SignUpPage() {
                 type="password"
                 value={second_password}
                 onChange={(e) => setSecondPassword(e.target.value)}
+                maxLength="50"
               />
 
               <button type="submit" className="sign-up-btn">M'inscrire</button>

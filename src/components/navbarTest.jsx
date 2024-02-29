@@ -1,23 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { UserContext } from "./UserContext";
-import { CartContext } from "./CartContext";
-import UserOverlay from "./UserOverlay";
-import CartOverlay from "./CartOverlay";
-import { Link } from "react-router-dom";
-import "../styles/navbar.scss";
-import SearchBar from "./SearchBar";
-import ShopButton from './ShopButton'
-
-
-import { AuthContext } from "./AuthContext.jsx";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import "bootstrap/dist/css/bootstrap.min.css";
-
 export default function Navbar() {
-  const { signOutUser } = useContext(AuthContext);
-  const { numberOfItems } = useContext(CartContext);
-  const { setIsLogged, isLogged, userFirstname, setUserFirstname, setUserLastname } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -64,20 +45,7 @@ export default function Navbar() {
     };
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await signOutUser();
-      setIsLogged(false);
-      setUserFirstname('');
-      setUserLastname('');
-      localStorage.clear();
-      window.location.reload();
 
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-
-  };
 
   return (
     <div className="navbar-container">
@@ -87,30 +55,6 @@ export default function Navbar() {
           id="dropdown-item-button"
           title={`Bienvenue ${userFirstname}`}
         >
-          <Dropdown.Item as="button">
-            <Link className="category-links" to="/compte">
-              Mon compte
-            </Link>
-          </Dropdown.Item>
-          <Dropdown.Item as="button">
-            <Link className="category-links" to="/">
-              Mes commandes
-            </Link>
-          </Dropdown.Item>
-          <Dropdown.Item as="button">
-            <Link className="category-links" to="">
-              Mes informations
-            </Link>
-          </Dropdown.Item>
-          <Dropdown.Item as="button">
-            <Link
-              onClick={() => handleLogout()}
-              className="category-links"
-              to="/"
-            >
-              Me déconnecter
-            </Link>
-          </Dropdown.Item>
         </DropdownButton>
       ) : (
         <div className="user-icon-container" ref={userOverlayRef}>
