@@ -21,9 +21,9 @@ export default function BestSellers() {
           },
         });
 
-        console.log(response);
+
         const data = await response.json();
-        console.log(data);
+
         setBestsellers(data);
         setIsLoading(false);
       } catch (error) {

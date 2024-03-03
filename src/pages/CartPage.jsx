@@ -19,7 +19,12 @@ export default function CartPage() {
   } = cartContext;
   const [showStripe, setShowStripe] = useState(false);
 
-  console.log("nombre d articles", numberOfItems());
+  const scrollToPaymentSection = () => {
+    const paymentSection = document.getElementById('stripe-container');
+    if (paymentSection) {
+      paymentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="cartPage">
@@ -48,13 +53,13 @@ export default function CartPage() {
                   {product.product_price}€
                 </div>
                 <div className="cart-quantity-column">
-                  <button onClick={() => decreaseQuantity(productId)}>-</button>
+                  <button className="qty-buttons" onClick={() => decreaseQuantity(productId)}>-</button>
                   {quantity}
-                  <button onClick={() => increaseQuantity(productId)}>+</button>
+                  <button className="qty-buttons" onClick={() => increaseQuantity(productId)}>+</button>
                 </div>
                 <div className="cart-total-column">
                   <div>{product.product_price * quantity}€</div>
-                  <button onClick={() => removeProduct(productId)}>
+                  <button className="cartPage-remove-btn" onClick={() => removeProduct(productId)}>
                     supprimer
                   </button>
                 </div>
@@ -92,13 +97,13 @@ export default function CartPage() {
             <label htmlFor="">Vous avez un code?</label>
             <input type="text" placeholder="votre code ici..." maxLength="50" />
           </div>
-          <button className="cart-order" onClick={() => setShowStripe(true)}>Commander</button>
+          <button className="cart-order" onClick={() => { setShowStripe(true); scrollToPaymentSection() }}>Commander</button>
 
         </section>
 
 
       </div>
-      {showStripe ? <div > <PaymentSection /> </div> : null}
+      {showStripe ? <div id="stripe-container"> <PaymentSection /> </div> : null}
       <Footer />
     </div>
 

@@ -11,8 +11,6 @@ export const CartContextProvider = ({ children }) => {
   const { userId } = userContext;
   console.log(userId);
 
-
-
   const saveCartOnBdd = async () => {
 
     try {

@@ -7,19 +7,7 @@
   align-items: center;
 }
 
-.navbar-blog {
-  color: $green;
-  font-size: large;
-  font-style: italic;
-  margin-right: 20px;
-  cursor: pointer;
-  text-decoration: none;
 
-  &:visited {
-    text-decoration: none;
-    color: $green;
-  }
-}
 
 .navbar-icon {
   height: 30px;
@@ -155,11 +143,6 @@ input:focus {
   margin-top: 8px;
 }
 
-@media (max-width: 1200px) {
-  .navbar-blog {
-    display: none;
-  }
-}
 
 @media (max-width: 700px) {
   .navbar-icon {
