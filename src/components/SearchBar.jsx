@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../styles/searchBarOverlay.scss"
+import { BASEURL } from '../App'
 
 
 
@@ -42,7 +43,7 @@ export default function SearchBar({ closeSearchBar }) {
     useEffect(() => {
         const fetchResults = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/products", {
+                const response = await fetch(`${BASEURL}/api/products`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 
 import "../styles/productPage.scss";
 import { useParams } from "react-router-dom";
+import { BASEURL } from '../App'
 
 export default function ProductPage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +46,7 @@ export default function ProductPage() {
         const fetchResults = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:5000/api/products/${id}`,
+                    `${BASEURL}/api/products/${id}`,
                     {
                         method: "GET",
                         headers: {

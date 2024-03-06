@@ -15,6 +15,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MyAccount from "./pages/MyAccount";
 import { AuthProvider } from "./components/AuthContext";
 
+export const BASEURL = "https://server.kevinmas.com/evergreen/backend";
+
 function App() {
   return (
     <div className="App">

@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from "react";
+import { BASEURL } from '../App'
 
 
 
@@ -39,7 +40,7 @@ export const UserContextProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${BASEURL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ export const UserContextProvider = ({ children }) => {
     }
     try {
 
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
+      const response = await fetch(`${BASEURL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

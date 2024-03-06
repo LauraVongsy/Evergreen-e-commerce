@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import Dropdown from "react-bootstrap/Dropdown";
 import "../styles/smallplants.scss";
 import { useParams } from "react-router-dom";
+import { BASEURL } from '../App'
 
 export default function SmallPlants() {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +19,7 @@ export default function SmallPlants() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/categories/${id}`, {
+        const response = await fetch(`${BASEURL}/api/categories/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

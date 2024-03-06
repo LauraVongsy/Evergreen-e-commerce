@@ -3,6 +3,7 @@ import { CartContext } from "../components/CartContext";
 import BestSellerCard from "./BestsellerCard";
 
 import "../styles/bestsellers.scss";
+import { BASEURL } from '../App'
 
 export default function BestSellers() {
   const cartContext = useContext(CartContext);
@@ -14,7 +15,7 @@ export default function BestSellers() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/bestsellers`, {
+        const response = await fetch(`${BASEURL}/api/bestsellers`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

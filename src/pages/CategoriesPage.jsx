@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import "../styles/categories.scss";
+import { BASEURL } from '../App'
 
 export default function CategoriesPage() {
 
@@ -14,7 +15,7 @@ export default function CategoriesPage() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/categories', {
+        const response = await fetch(`${BASEURL}/api/categories`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

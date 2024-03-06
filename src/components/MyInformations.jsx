@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import "../styles/myInformations.scss";
 import { UserContext } from "./UserContext";
+import { BASEURL } from '../App'
 
 export default function MyInformations({ layout }) {
   const userContext = useContext(UserContext);
@@ -21,7 +22,7 @@ export default function MyInformations({ layout }) {
         password: formSecondPassword,
       };
 
-      const response = await fetch(`http://localhost:5000/api/user/${userId}`, {
+      const response = await fetch(`${BASEURL}/api/user/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
